@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Quick App</title>
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/popper.js"></script>
+    <script src="/static/js/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/styles.css">
+</head>
+<body>
+
+
+<h1 class="display-4">Quick App</h1>
+<p class="lead">Generate application from template</p>
+<br/>
+
+<hr/>
+<h2 th:text="${template.manifest.name}"></h2>
+<hr/>
+
+<br/>
+
+<form action="#" th:action="@{/generator}" th:object="${generatorForm}" method="post">
+    <div class="form-group row Form-Single-Field-Group" th:each="entry : ${variables}">
+        <div class="Form-Single-Field">
+            <label th:for="${entry.id}" th:text="${entry.name}" class="col-sm-2 col-form-label Form-Single-Field-Label"></label>
+            <div class="Form-Single-Field-Name">
+                <button class="btn btn-outline-secondary Form-Single-Field-Description-Button" type="button" data-toggle="collapse"
+                        th:data-target="${'#collapse' + entry.id}"
+                        aria-expanded="false" aria-controls="${'collapse' + entry.id}">
+                    ?
+                </button>
+                <input class="form-control" th:id="${entry.id}" th:field="*{variables[__${entry.id}__]}"
+                       th:value="${entry.defaultValue}" placeholder="Enter value"/>
+            </div>
+        </div>
+        <div class="collapse" th:id="${'collapse' + entry.id}">
+            <br/>
+            <div class="card card-body" th:text="${entry.description}"></div>
+            <hr/>
+        </div>
+    </div>
+    <div class="form-group row Form-Single-Field-Group" th:each="entry : ${choiceVariables}">
+        <div class="Form-Single-Field">
+            <label th:for="${'choice-' + entry.id}" th:text="${entry.name}" class="col-sm-2 col-form-label Form-Single-Field-Label"></label>
+            <div class="Form-Single-Choice-Name">
+                <button class="btn btn-outline-secondary Form-Single-Field-Description-Button" type="button" data-toggle="collapse"
+                        th:data-target="${'#collapse-choice-' + entry.id}"
+                        aria-expanded="false" aria-controls="${'collapse' + entry.id}">
+                    ?
+                </button>
+                <input class="form-check Form-Checkbox" th:id="${'choice-' + entry.id}" th:field="*{choiceVariables[__${entry.id}__]}"
+                       th:checked="${entry.enabledByDefault}" type="checkbox"/>
+            </div>
+        </div>
+        <div class="collapse" th:id="${'collapse-choice-' + entry.id}">
+            <br/>
+            <div class="card card-body" th:text="${entry.description}"></div>
+            <hr/>
+        </div>
+    </div>
+    <input type="hidden" name="templateId" th:value="${template.key}">
+    <button type="submit" class="btn btn-primary">Generate</button>
+</form>
+</body>
+</html>

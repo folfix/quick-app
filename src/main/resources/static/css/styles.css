@@ -1,0 +1,56 @@
+body {
+    margin: 50px;
+}
+
+.Tags {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.Tag {
+    margin-right: 5px;
+}
+
+.Form-Single-Field {
+    display: flex;
+    flex-direction: row;
+    white-space: nowrap;
+    height: calc(1.5em + .75rem + 2px);
+}
+
+.Form-Single-Field-Name {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.Form-Single-Choice-Name {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+}
+
+.Form-Checkbox {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.Form-Single-Field-Label {
+    min-width: 300px;
+}
+
+.Form-Single-Field-Group {
+    display: flex;
+    flex-direction: column;
+}
+
+.Form-Single-Field-Description-Button {
+    margin-right: 10px;
+}
+
+.Success-Card {
+    margin-top: 20px;
+}

@@ -1,0 +1,36 @@
+management:
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+    tags:
+      application: quick-app
+  server:
+    port: 9090
+
+spring:
+  mvc:
+    static-path-pattern: /static/**
+  application:
+    name: quick-app
+
+quick-app:
+  publish:
+    initial-commit-author: Quick App Technical
+    initial-commit-email: quick-app@nowhere
+    initial-commit-message: Initial commit
+  templates:
+    git-repository:
+      url: https://github.com/folfix/quick-app-templates.git
+  print-properties-on-startup: false
