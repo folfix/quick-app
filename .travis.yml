@@ -13,3 +13,4 @@ script:
   - export GIT_SHORT=$(git rev-parse --short HEAD)
   - docker tag folfix/quick-app folfix/quick-app:$GIT_SHORT
   - docker push folfix/quick-app:$GIT_SHORT
+  - docker push folfix/quick-app:latest
