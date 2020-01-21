@@ -5,14 +5,11 @@ os: linux
 dist: trusty
 jdk: oraclejdk11
 
-jobs:
-  include:
-    - stage: build
-      script:
-        - ./gradlew build
-    - stage: docker
-      script:
-        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker build -t folfix/quick-app -f src/main/docker/Dockerfile build/libs
-        - docker push folfix/quick-app
-
+script:
+  - ./gradlew build
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - cp src/main/docker/Dockerfile build/libs
+  - docker build -t folfix/quick-app build/libs
+  - export GIT_SHORT=$(git rev-parse --short HEAD)
+  - docker tag folfix/quick-app folfix/quick-app:$GIT_SHORT
+  - docker push folfix/quick-app:$GIT_SHORT
