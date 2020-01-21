@@ -95,7 +95,6 @@ quick-app.templates.git-repository.password=$BITBUCKET_PASSWORD
 ```
 
 ### TODO
-* build on travis CI and Docker Hub publish
 * describe `ChoiceVariables` in readme
 * describe `publish` in readme
 * describe `intelliJ` in readme
