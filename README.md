@@ -7,6 +7,13 @@ Available tools such as the __[Spring Initializr](https://start.spring.io/)__ so
 because of network restrictions, company's specific standards and so on.
 Possibility to define any template in favourite technology was needed.
 
+### Test it locally
+`docker run -d -p 8080:8080 folfix/quick-app`
+
+Application is accessible via __[http://localhost:8080](http://localhost:8080)__.
+
+Without additional configuration Quick App will run using __[this](https://github.com/folfix/quick-app-templates)__ templates.
+
 ### How it works
 Quick App uses user defined templates stored in Git repository. 
 __[Mustache](https://github.com/spullara/mustache.java)__ is used as a template engine.
@@ -59,19 +66,12 @@ It's suited for 3rd part scripts like Gradle/Maven wrapper.
 Every template has it's own directory. As mentioned Manifest file must be present in template directory.
 Example of templates Git repository can be found __[here](https://github.com/folfix/quick-app-templates)__.
 
-### Usage
-Without additional configuration Quick App will run using __[this](https://github.com/folfix/quick-app-templates)__ templates.
-
-#### UI
-Quick App came with UI available out of the box.
-It's accessible via `/` url.
-
-#### API
-Quick App exposes REST API. Swagger is available at standard url `/swagger-ui.html`.
-
 ### Configuration
 Quick App is configured by Spring properties prefixed with `quick-app`.
 Check __[QuickAppProperties](https://github.com/folfix/quick-app/blob/master/src/main/java/net/folfas/quickapp/QuickAppProperties.java)__ class to see available configuration.
+
+### API
+Quick App exposes REST API. Swagger is available at standard url `/swagger-ui.html`.
 
 #### Example Github template private repository
 ```
