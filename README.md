@@ -1,4 +1,4 @@
-# Quick App
+# Quick App ![build_status](https://travis-ci.com/folfix/quick-app.svg?branch=master "Build status")
 A technologically agnostic initiator, which bases on user defined templates.
 
 ### Use case
@@ -7,11 +7,12 @@ Available tools such as the __[Spring Initializr](https://start.spring.io/)__ so
 because of network restrictions, company's specific standards and so on.
 Possibility to define any template in favourite technology was needed.
 
-### Test it locally
-`docker run -d -p 8080:8080 folfix/quick-app`
+### Test it
+__[quick-app.folfas.net](http://quick-app.folfas.net/)__
 
-Application is accessible via __[http://localhost:8080](http://localhost:8080)__.
+or
 
+`docker run -d -p 8080:8080 folfix/quick-app`\
 Without additional configuration Quick App will run using __[this](https://github.com/folfix/quick-app-templates)__ templates.
 
 ### How it works
