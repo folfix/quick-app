@@ -43,13 +43,13 @@ public class GitNativeConsole implements TemplatesGitRepository {
     @PostConstruct
     public void ignoreSslConfiguration() throws Exception {
         QuickAppProperties.GitRepository templatesRepository = properties.getTemplates().getGitRepository();
+        log.info("Template repository url is: {}", templatesRepository.getUrl());
         if (templatesRepository.isDisableSslVerification()) {
             disableSSLVerify(new URI(templatesRepository.getUrl()));
             log.info("Disabled SSL verification for {}", templatesRepository.getUrl());
         }
 
         QuickAppProperties.GitRepository publishRepository = properties.getPublish().getBitbucketRestApi();
-        log.info(publishRepository.toString());
         if (StringUtils.hasText(publishRepository.getUrl()) &&
             publishRepository.isDisableSslVerification()) {
             disableSSLVerify(new URI(publishRepository.getUrl()));

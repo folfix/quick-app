@@ -60,6 +60,6 @@ public class TemplatesManager {
             .filter(templateFactory::isValidTemplate)
             .map(templateFactory::getTemplateFromTemplateDirectory)
             .collect(Collectors.toMap(Template::getKey, Function.identity()));
-        log.info("Updated available templates");
+        log.info("Updated available templates [size={}]", templates.size());
     }
 }

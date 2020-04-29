@@ -2,15 +2,18 @@ package net.folfas.quickapp.domain.templates;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Arrays;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.folfas.quickapp.domain.templates.manifest.Manifest;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Arrays;
+
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class TemplateFactory {
@@ -24,8 +27,12 @@ public class TemplateFactory {
     boolean isValidTemplate(File templateDirectory) {
         File[] filesInTemplate = templateDirectory.listFiles();
         Assert.notNull(filesInTemplate, "There are no files in template");
-        return Arrays.stream(filesInTemplate)
-            .anyMatch(file -> Manifest.MANIFEST_FILENAME.equals(file.getName()));
+        boolean isValidTemplate = Arrays.stream(filesInTemplate)
+                .anyMatch(file -> Manifest.MANIFEST_FILENAME.equals(file.getName()));
+        if (!isValidTemplate) {
+            log.warn("Found not valid template directory: {}", templateDirectory.getName());
+        }
+        return isValidTemplate;
     }
 
     Template getTemplateFromTemplateDirectory(File templateDirectory) {
